@@ -1,11 +1,13 @@
 import Image from 'next/image';
 import { useRef } from 'react';
 import styles from '../styles/_Navbar.module.scss';
+import { useSelector } from 'react-redux';
 
 
 const Navbar = () => {
 
   const menuRef = useRef(null);
+  const quantity = useSelector(state => state.shopcart.quantity);
 
   const toggleMenu = (e) => {
     e.target.classList.toggle(`${styles['open']}`);
@@ -34,7 +36,7 @@ const Navbar = () => {
 
         <div className={styles.cart}>
           <Image src="/images/cart.png" alt="" width="30px" height="30px" />
-          <div className={styles.counter}>2</div>
+          <div className={styles.counter}>{quantity}</div>
         </div>
 
         <div className={styles.hamburger} onClick= {toggleMenu}>
