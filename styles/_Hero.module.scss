@@ -1,0 +1,80 @@
+.container {
+  min-height: 100vh;
+  background: radial-gradient(
+      circle,
+      rgba(20, 20, 18, 0.9780287114845938) 0%,
+      rgba(27, 24, 21, 0.9) 47%,
+      rgba(32, 27, 24, 0.8547794117647058) 100%
+    ),
+    url(/images/hero_xl.jpg);
+  background-color: #000;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  font-family: 'League Gothic', sans-serif;
+  text-align: center;
+  color: #fff;
+  & h1 {
+    /* letter-spacing: 5px; */
+    font-family: 'Alfa Slab One', cursive;
+    font-size: 3em;
+    letter-spacing: 3px;
+    margin: 0;
+  }
+  & p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2em;
+  }
+}
+
+.cta {
+  font-size: 3em;
+  width: 20vw;
+  max-width: 300px;
+  height: auto;
+  border: 0;
+  outline: 0;
+  background-color: #ff9800;
+  padding: 12px 2vw;
+}
+
+.arrowContainer {
+  position: absolute;
+  width: 10%;
+  height: 20%;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.wrapper {
+  width: 300vw;
+  height: 100%;
+  display: flex;
+  transition: all 1.5s ease-in-out;
+}
+
+.imgContainer {
+  width: 100vw;
+  height: 100%;
+  position: relative;
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    height: 50vh;
+  }
+}

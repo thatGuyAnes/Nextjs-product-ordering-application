@@ -1,0 +1,26 @@
+@import './normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=League+Gothic&family=Roboto&display=swap');
+
+body,
+html {
+  /* font-size: calc(1em + 1vw); */
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #000;
+  color: #fff;
+}
+
+*::selection {
+  background: #444;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+* {
+  box-sizing: border-box;
+}
