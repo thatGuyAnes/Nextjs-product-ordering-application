@@ -34,6 +34,7 @@ const AddProductModal = ({ setModalIsOpen }) => {
 
     try {
       const res_upload = await axios.post(
+        // change to proper id
         'https://api.cloudinary.com/v1_1/dfbx7jnit/image/upload',
         data
       );
