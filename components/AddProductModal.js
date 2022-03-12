@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import styles from '../styles/Add.module.css';
+import styles from '../styles/_AddProductModal.module.scss';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
-const AddProductModal = ({ setClose }) => {
+const AddProductModal = ({ setModalIsOpen }) => {
   const [file, setFile] = useState(null);
   const [title, setTitle] = useState(null);
-  const [desc, setDesc] = useState(null);
+  const [description, setDescription] = useState(null);
   const [prices, setPrices] = useState([]);
-  const [extraOptions, setExtraOptions] = useState([]);
+  const [options, setOptions] = useState([]);
   const [extra, setExtra] = useState(null);
 
   const changePrice = (e, index) => {
@@ -22,42 +22,45 @@ const AddProductModal = ({ setClose }) => {
   };
 
   const handleExtra = (e) => {
-    setExtraOptions((prev) => [...prev, extra]);
+    setOptions((prev) => [...prev, extra]);
   };
 
+  // files upload
   const handleCreate = async () => {
     const data = new FormData();
+    // make sure that it's the same as the upload presets name under setting on cloudinary's settings.
     data.append('file', file);
     data.append('upload_preset', 'uploads');
+
     try {
-      const uploadRes = await axios.post(
-        'https://api.cloudinary.com/v1_1/dsbyq4sj1/image/upload',
+      const res_upload = await axios.post(
+        'https://api.cloudinary.com/v1_1/dfbx7jnit/image/upload',
         data
       );
-
-      const { url } = uploadRes.data;
+      console.log(res_upload.data);
+      const { url } = res_upload.data;
       const newProduct = {
         title,
-        desc,
+        image: url,
         prices,
-        extraOptions,
-        img: url,
+        options,
+        description,
       };
 
       await axios.post('http://localhost:3000/api/products', newProduct);
-      setClose(true);
+      setModalIsOpen(false);
     } catch (err) {
-      console.log(err);
+      console.log('error', err);
     }
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
-        <span onClick={() => setClose(true)} className={styles.close}>
+        <span onClick={() => setModalIsOpen(false)} className={styles.close}>
           X
         </span>
-        <h1>Add a new Pizza</h1>
+        <h1>Add a new Product</h1>
         <div className={styles.item}>
           <label className={styles.label}>Choose an image</label>
           <input type="file" onChange={(e) => setFile(e.target.files[0])} />
@@ -75,7 +78,7 @@ const AddProductModal = ({ setClose }) => {
           <textarea
             rows={4}
             type="text"
-            onChange={(e) => setDesc(e.target.value)}
+            onChange={(e) => setDescription(e.target.value)}
           />
         </div>
         <div className={styles.item}>
@@ -102,8 +105,8 @@ const AddProductModal = ({ setClose }) => {
           </div>
         </div>
         <div className={styles.item}>
-          <label className={styles.label}>Extra</label>
-          <div className={styles.extra}>
+          <label className={styles.label}>Option</label>
+          <div className={styles.option}>
             <input
               className={`${styles.input} ${styles.inputSm}`}
               type="text"
@@ -118,13 +121,13 @@ const AddProductModal = ({ setClose }) => {
               name="price"
               onChange={handleExtraInput}
             />
-            <button className={styles.extraButton} onClick={handleExtra}>
+            <button className={styles.optionButton} onClick={handleExtra}>
               Add
             </button>
           </div>
-          <div className={styles.extraItems}>
-            {extraOptions.map((option) => (
-              <span key={option.text} className={styles.extraItem}>
+          <div className={styles.optionItems}>
+            {options.map((option) => (
+              <span key={option.text} className={styles.optionItem}>
                 {option.text}
               </span>
             ))}
@@ -139,3 +142,6 @@ const AddProductModal = ({ setClose }) => {
 };
 
 export default AddProductModal;
+
+
+

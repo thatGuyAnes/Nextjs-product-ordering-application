@@ -1,4 +1,4 @@
-// import styles from '../styles/_AddProductButton.module.scss';
+import styles from '../styles/_AddProductButton.module.scss';
 
 const AddProductButton = ({ setModalIsOpen }) => {
   return (

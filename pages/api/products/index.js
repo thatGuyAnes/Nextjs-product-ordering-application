@@ -22,7 +22,7 @@ export default async function handler(req, res) {
       const product = await Product.create(req.body); /* create a new model in the database */
       res.status(201).json({ success: true, data: product });
     } catch (error) {
-      res.status(400).json({ success: false });
+      res.status(400).json({success: false, error: error });
     }
     break;
 

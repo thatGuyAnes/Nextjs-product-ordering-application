@@ -18,9 +18,9 @@ export default function Home({products, isAdmin}) {
       </Head>
       <Hero/>
 
-      {admin && <AddProductButton setModalState={setModalIsOpen}/>}
+      {isAdmin && <AddProductButton setModalIsOpen={setModalIsOpen}/>}
       <ListOfProducts products={products} />
-      {modalIsOpen && <AddProductModal setModalState={setModalIsOpen}/>}
+      {modalIsOpen && <AddProductModal setModalIsOpen={setModalIsOpen}/>}
     </div>
   );
 };
@@ -39,12 +39,12 @@ export default function Home({products, isAdmin}) {
 };*/
 
 /* Axios: Retrieves product(s) data from mongodb database */
-export async function getServerSideProps() {
+export async function getServerSideProps(ctx) {
 
-  const myCookie = ctx.req?.cookies || '';
+  const adminCookie = ctx.req?.cookies || '';
   let isAdmin = false;
 
-  if (myCookie.token === process.env.TOKEN) {
+  if (adminCookie.token === process.env.TOKEN) {
     isAdmin = true;
   }
 
