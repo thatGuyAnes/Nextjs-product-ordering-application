@@ -1,11 +1,14 @@
 import axios from 'axios';
 import Head from 'next/head';
+import { useState } from 'react';
 import Hero from '../components/Hero';
 import ListOfProducts from '../components/ListOfProducts';
-import Image from 'next/image';
+import AddProductButton from '../components/AddProductButton';
+import AddProductModal from '../components/AddProductModal';
 
-export default function Home({data}) {
-  const products = data.data;
+export default function Home({products, isAdmin}) {
+  // const products = data.data;
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   return (
     <div className="c-home">
       <Head>
@@ -14,7 +17,10 @@ export default function Home({data}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Hero/>
+
+      {admin && <AddProductButton setModalState={setModalIsOpen}/>}
       <ListOfProducts products={products} />
+      {modalIsOpen && <AddProductModal setModalState={setModalIsOpen}/>}
     </div>
   );
 };
@@ -34,10 +40,20 @@ export default function Home({data}) {
 
 /* Axios: Retrieves product(s) data from mongodb database */
 export async function getServerSideProps() {
+
+  const myCookie = ctx.req?.cookies || '';
+  let isAdmin = false;
+
+  if (myCookie.token === process.env.TOKEN) {
+    isAdmin = true;
+  }
+
+
   const res = await axios.get('http://localhost:3000/api/products');
   return {
     props: {
-      data: res.data,
+      products: res.data.data,
+      isAdmin
     }
   };
 };

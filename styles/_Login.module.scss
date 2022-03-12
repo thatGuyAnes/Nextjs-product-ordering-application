@@ -1,0 +1,32 @@
+.container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  height: 40px;
+  margin-bottom: 20px;
+  padding: 0px 10px;
+}
+
+.button {
+  height: 40px;
+  margin-bottom: 20px;
+  border: 2px solid #fff;
+  background-color: #000;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.error {
+  font-size: 13px;
+  color: red;
+}
