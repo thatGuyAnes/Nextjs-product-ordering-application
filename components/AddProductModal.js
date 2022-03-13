@@ -21,7 +21,7 @@ const AddProductModal = ({ setModalIsOpen }) => {
     setExtra({ ...extra, [e.target.name]: e.target.value });
   };
 
-  const handleExtra = (e) => {
+  const handleExtra = (_e) => {
     setOptions((prev) => [...prev, extra]);
   };
 

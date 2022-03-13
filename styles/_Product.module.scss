@@ -1,7 +1,9 @@
 .container {
+  padding-top: 15vh;
   height: calc(100vh - 100px);
   display: flex;
-  color: #eee;
+  align-items: center;
+  justify-content: center;
 }
 
 .left {
@@ -15,6 +17,9 @@
 .right {
   flex: 1;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .imgContainer {
@@ -24,14 +29,21 @@
 }
 
 .title {
-  color: #ff9800;
+  color: #333;
+  font-size: 2em;
 }
 
 .price {
-  color: #ff9800;
+  color: #333;
   font-size: 24px;
-  font-weight: 400;
-  border-bottom: 1px solid #d1411e;
+  font-weight: bold;
+}
+.desc {
+  max-width: 500px;
+}
+
+.sizeOptions {
+  font-weight: bold;
 }
 
 .sizes {
@@ -63,12 +75,13 @@
 }
 
 .button {
-  height: 30px;
-  margin-left: 10px;
-  background-color: #ff9800;
-  color: white;
-  border: none;
-  font-weight: 500;
+  background-color: blue;
+  color: #eee;
+  border-radius: 5px;
+  padding: 4px 10px;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-left: 20px;
   cursor: pointer;
 }
 

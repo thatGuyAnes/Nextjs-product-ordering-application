@@ -20,6 +20,7 @@ export default async function handler(req, res) {
   case 'POST':
     try {
       const product = await Product.create(req.body); /* create a new model in the database */
+      console.log(req.body);
       res.status(201).json({ success: true, data: product });
     } catch (error) {
       res.status(400).json({success: false, error: error });

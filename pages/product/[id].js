@@ -50,22 +50,18 @@ const Product = ({data}) => {
 
       <div className={styles.right}>
         <h1 className={styles.title}>{product.title}</h1>
-        <span className={styles.price}>{price}</span>
+        <span className={styles.price}>${price}</span>
         <p className={styles.desc}>{product.description}</p>
-        <h3 className={styles.choose}>Choose the size</h3>
+        <h3 className={styles.sizeOptions}>Choose the size</h3>
         <div className={styles.sizes}>
-
-
-          <select name="cars" id="size" onChange={onSizeChange}>
+          <select name="size" id="size" onChange={onSizeChange}>
             <option value="0">Small</option>
             <option value="1">Medium</option>
             <option value="2">Large</option>
           </select>
-
         </div>
-        <h3 className={styles.choose}>Choose additional options</h3>
+        <h3 className={styles.sizeOptions}>Choose additional options</h3>
         <div className={styles.options}>
-
           {product.options.map((option) =>
             <div className={styles.option} key={option._id}>
               <input
@@ -78,7 +74,6 @@ const Product = ({data}) => {
               <label htmlFor="one">{option.text}</label>
             </div>
           )}
-
         </div>
 
         <div className={styles.add}>

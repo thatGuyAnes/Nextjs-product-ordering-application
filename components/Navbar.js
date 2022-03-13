@@ -19,23 +19,14 @@ const Navbar = () => {
 
       <Link href="/" passHref>
         <div className={styles.item}>
-          <div className={styles.texts}>IL PIACERE</div>
+          <div className={styles.texts}>HOME</div>
         </div>
       </Link>
 
-      {/* =Menu */}
-      <div className={styles.menu} ref={menuRef}>
-        <ul className={styles.list}>
-          <li className={styles.listItem}>Homepage</li>
-          <li className={styles.listItem}>Products</li>
-          <li className={styles.listItem}>Menu</li>
-          <li className={styles.listItem}>Events</li>
-          <li className={styles.listItem}>Blog</li>
-          <li className={styles.listItem}>Contact</li>
-        </ul>
-      </div>
-
       <div className={`${styles.item} ${styles.left}`}>
+        <Link href="/admin" passHref>
+          <button className={styles.admin}>Admin Dashboard</button>
+        </Link>
 
         <Link href="/shopcart" passHref>
           <div className={styles.cart}>
@@ -44,14 +35,7 @@ const Navbar = () => {
           </div>
         </Link>
 
-        <div className={styles.hamburger} onClick= {toggleMenu}>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
+
 
       </div>
 
